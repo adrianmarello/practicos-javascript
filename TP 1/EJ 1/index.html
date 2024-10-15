@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 1 - One Shot</title>
+</head>
+<body>
+  <!-- Input entrada de texto solo números -->
+  <input type="number" id="monto">
+  <!-- Button -->
+  <button id="button">Calcular decuento</button>
+  <!-- Output -->
+  <div id="output"></div>
+</body>
+<script>
+  const descuento_porcentaje = 50;
+  const descuento_maximo = 80000;
+
+  const button = document.getElementById('button');
+
+  button.addEventListener('click', () => {
+    const monto = document.getElementById('monto').value;
+    const descuento = monto * descuento_porcentaje / 100;
+    if (descuento > descuento_maximo) {
+      const descuento = descuento_maximo;
+    }
+    const total = monto - descuento;
+    const output = document.getElementById('output');
+    output.innerHTML = ' Total a pagar: ' + monto + ' - Descuento otorgado: ' + descuento + ' - Gasto final: ' + total;
+  })
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 2 - Alimento para mascotas</title>
+</head>
+<body>
+  <!-- Input codigo de producto -->
+  <label for="codigo">Código de producto:</label>
+  <input type="number" id="codigo">
+  <!-- Input cantidad de bolsas -->
+   <label for="bolsas">Cantidad de bolsas:</label>
+  <input type="number" id="bolsas">
+  <!-- Button -->
+  <button id="button">Calcular</button>
+  <!-- Output -->
+  <div id="output"></div>
+</body>
+<script>
+  const productos = {
+    '1': {
+      'descripcion': 'Dogui x 21 kg',
+      'x_unidad': 38000,
+      'mayor_a_5': 36000,
+      'mayor_a_11': 34000
+    },
+    '2': {
+      'descripcion': 'Tiernitos x 21 kg',
+      'x_unidad': 31000,
+      'mayor_a_5': 29000,
+      'mayor_a_11': 27000
+    },
+    '3': {
+      'descripcion': 'Dogpro x 21kg',
+      'x_unidad': 46000,
+      'mayor_a_5': 44000,
+      'mayor_a_11': 42000
+    }
+  }
+
+  const button = document.getElementById('button');
+
+  button.addEventListener('click', () => {
+    const codigo = document.getElementById('codigo').value;
+    const bolsas = document.getElementById('bolsas').value;
+    const output = document.getElementById('output');
+    const producto = productos[codigo];
+    let total = 0;
+    if (producto) {
+      let precio_por_bolsa = 0;
+      if (bolsas >= 5 && bolsas <= 10) {
+        total = bolsas * producto['mayor_a_5'];
+        precio_por_bolsa = producto['mayor_a_5'];
+      } else if (bolsas >= 11) {
+        total = bolsas * producto['mayor_a_11'];
+        precio_por_bolsa = producto['mayor_a_11'];
+      } else {
+        total = bolsas * producto['x_unidad'];
+        precio_por_bolsa = producto['x_unidad'];
+      }
+      output.innerHTML = 'Precio por bolsa: ' + precio_por_bolsa + ' - Total a pagar: ' + total;
+    } else {
+      output.innerHTML = 'El producto no existe';
+    }
+  });   
+</script>
+</html>
